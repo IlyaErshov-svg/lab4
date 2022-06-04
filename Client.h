@@ -14,6 +14,7 @@ public:
 	void add_position(Position* pos) {
 		for (auto it = m_ptr_position.begin(); it != m_ptr_position.end(); ++it) {
 			if ((*it)->get_ptr_product() == pos->get_ptr_product()) {
+				delete *it;
 				*it = pos;
 				return void();
 			}
@@ -32,7 +33,7 @@ public:
 			std::cout << "\tQuantity: " << (*it)->get_quantity() << std::endl;
 			std::cout << "\tCost: " << (*it)->get_cost() << std::endl;
 		}
-		std::cout << "Total cost: " << get_cost();
+		std::cout << "Total cost: " << get_cost() << std::endl;
 	}
 	bool empty() {
 		return m_ptr_position.empty();

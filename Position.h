@@ -34,7 +34,7 @@ class WeightPosition : public Position {
 private:
 	double m_weight;
 public:
-	WeightPosition(WeightProduct& weight_prod, std::size_t weight) : Position(weight_prod) {
+	WeightPosition(WeightProduct& weight_prod, double weight) : Position(weight_prod) {
 		m_weight = weight;
 	}
 	double get_cost() override {
