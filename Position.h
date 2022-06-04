@@ -26,13 +26,13 @@ public:
 		return m_ptr_product->get_cost();
 	}
 	double get_quantity() override{
-		return m_amount * m_ptr_product->get_cost();
+		return m_amount;
 	}
 };
 
 class WeightPosition : public Position {
 private:
-	std::size_t m_weight;
+	double m_weight;
 public:
 	WeightPosition(WeightProduct& weight_prod, std::size_t weight) : Position(weight_prod) {
 		m_weight = weight;
@@ -41,6 +41,6 @@ public:
 		return m_ptr_product->get_cost();
 	}
 	double get_quantity() override {
-		return m_weight * m_ptr_product->get_cost();
+		return m_weight;
 	}
 };

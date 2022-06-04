@@ -37,11 +37,11 @@ public:
 	}
 };
 
-class AmmountProduct : public Product {
+class AmountProduct : public Product {
 private:
 	double m_cost_per_one;
 public:
-	AmmountProduct(const ProductInfo& product_info, const double cost) :Product(product_info) {
+	AmountProduct(const ProductInfo& product_info, const double cost) :Product(product_info) {
 		m_cost_per_one = cost;
 	}
 	double get_cost() override {
