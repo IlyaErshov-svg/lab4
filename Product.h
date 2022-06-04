@@ -21,3 +21,33 @@ public:
 protected:
 	std::string m_product_info;
 };
+
+class WeightProduct: public Product{
+private:
+	double m_cost_per_kg;
+public:
+	WeightProduct(const ProductInfo& product_info, const double cost):Product(product_info) {
+		m_cost_per_kg = cost;
+	}
+	double get_cost() override{
+		return m_cost_per_kg;
+	}
+	std::string get_info() override {
+		return m_product_info + ": " + std::to_string(m_cost_per_kg) + " per kg";
+	}
+};
+
+class AmmountProduct : public Product {
+private:
+	double m_cost_per_one;
+public:
+	AmmountProduct(const ProductInfo& product_info, const double cost) :Product(product_info) {
+		m_cost_per_one = cost;
+	}
+	double get_cost() override {
+		return m_cost_per_one;
+	}
+	std::string get_info() override {
+		return m_product_info + ": " + std::to_string(m_cost_per_one) + " per one";
+	}
+};
