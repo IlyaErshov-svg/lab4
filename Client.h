@@ -33,7 +33,12 @@ public:
 			std::cout << "\tQuantity: " << (*it)->get_quantity() << std::endl;
 			std::cout << "\tCost: " << (*it)->get_cost() << std::endl;
 		}
-		std::cout << "Total cost: " << get_cost() << std::endl;
+		std::string tmp = std::to_string(get_cost());
+		std::size_t num = tmp.find('.');
+		if (num != std::string::npos) {
+			tmp.erase(num + 3, std::string::npos);
+		}
+		std::cout << "Total cost: " << tmp << std::endl;
 	}
 	bool empty() {
 		return m_ptr_position.empty();

@@ -33,7 +33,12 @@ public:
 		return m_cost_per_kg;
 	}
 	std::string get_info() override {
-		return m_product_info + ": " + std::to_string(m_cost_per_kg) + " per kg";
+		std::string tmp = std::to_string(m_cost_per_kg);
+		std::size_t num = tmp.find('.');
+		if (num != std::string::npos) {
+			tmp.erase(num + 3, std::string::npos);
+		}
+		return m_product_info + ": " + tmp + " per kg";
 	}
 };
 
@@ -48,6 +53,11 @@ public:
 		return m_cost_per_one;
 	}
 	std::string get_info() override {
-		return m_product_info + ": " + std::to_string(m_cost_per_one) + " per one";
+		std::string tmp = std::to_string(m_cost_per_one);
+		std::size_t num = tmp.find('.');
+		if (num != std::string::npos) {
+			tmp.erase(num + 3, std::string::npos);
+		}
+		return m_product_info + ": " + tmp + " per kg";
 	}
 };
