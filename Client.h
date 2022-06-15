@@ -1,20 +1,28 @@
 #include "Position.h"
-#include <vector>
+#include <list>
 #include <iostream>
 #pragma once
 class Client;
 class Order {
 private:
-	std::vector<Position*> m_ptr_position;
+	std::list<Position*> m_ptr_position;
 	void clear() {
 		m_ptr_position.clear();
+	}
+	std::string _cost_formate(double cost) {
+		std::string tmp = std::to_string(get_cost());
+		std::size_t num = tmp.find('.');
+		if (num != std::string::npos) {
+			tmp.erase(num + 3, std::string::npos);
+		}
+		return tmp;
 	}
 public:
 	friend Client;
 	void add_position(Position* pos) {
 		for (auto it = m_ptr_position.begin(); it != m_ptr_position.end(); ++it) {
 			if ((*it)->get_ptr_product() == pos->get_ptr_product()) {
-				delete *it;
+				delete* it;
 				*it = pos;
 				return void();
 			}
@@ -33,12 +41,7 @@ public:
 			std::cout << "\tQuantity: " << (*it)->get_quantity() << std::endl;
 			std::cout << "\tCost: " << (*it)->get_cost() << std::endl;
 		}
-		std::string tmp = std::to_string(get_cost());
-		std::size_t num = tmp.find('.');
-		if (num != std::string::npos) {
-			tmp.erase(num + 3, std::string::npos);
-		}
-		std::cout << "Total cost: " << tmp << std::endl;
+		std::cout << "Total cost: " << _cost_formate(get_cost()) << std::endl;
 	}
 	bool empty() {
 		return m_ptr_position.empty();

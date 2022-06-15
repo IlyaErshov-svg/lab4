@@ -20,6 +20,14 @@ public:
 	virtual double get_cost() = 0;
 protected:
 	std::string m_product_info;
+	std::string _cost_formate(double cost) {
+		std::string tmp = std::to_string(get_cost());
+		std::size_t num = tmp.find('.');
+		if (num != std::string::npos) {
+			tmp.erase(num + 3, std::string::npos);
+		}
+		return tmp;
+	}
 };
 
 class WeightProduct: public Product{
@@ -33,12 +41,7 @@ public:
 		return m_cost_per_kg;
 	}
 	std::string get_info() override {
-		std::string tmp = std::to_string(m_cost_per_kg);
-		std::size_t num = tmp.find('.');
-		if (num != std::string::npos) {
-			tmp.erase(num + 3, std::string::npos);
-		}
-		return m_product_info + ": " + tmp + " per kg";
+		return m_product_info + ": " + _cost_formate(m_cost_per_kg) + " per kg";
 	}
 };
 
@@ -53,11 +56,6 @@ public:
 		return m_cost_per_one;
 	}
 	std::string get_info() override {
-		std::string tmp = std::to_string(m_cost_per_one);
-		std::size_t num = tmp.find('.');
-		if (num != std::string::npos) {
-			tmp.erase(num + 3, std::string::npos);
-		}
-		return m_product_info + ": " + tmp + " per kg";
+		return m_product_info + ": " + _cost_formate(m_cost_per_one) + " per kg";
 	}
 };
