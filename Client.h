@@ -55,7 +55,7 @@ public:
 		m_money += money;
 	}
 	bool waste_money(double money) {
-		if (m_money < money)
+		if (m_money < money || std::fabs(m_money - money) < std::numeric_limits<double>::epsilon())
 			return false;
 		else {
 			m_money -= money;
