@@ -1,6 +1,5 @@
-#include "Product.h"
 #pragma once
-
+#include "Product.h"
 class Position {
 protected:
 	Product* m_ptr_product;
@@ -11,8 +10,8 @@ public:
 	Product* get_ptr_product() {
 		return m_ptr_product;
 	}
-	virtual double get_cost() = 0;
-	virtual double get_quantity() = 0;
+	virtual double get_cost() const = 0;
+	virtual double get_quantity()  const = 0;
 };
 
 class AmountPosition : public Position {
@@ -22,10 +21,10 @@ public:
 	AmountPosition(AmountProduct& amount_prod, std::size_t amount):Position(amount_prod) {
 		m_amount = amount;
 	}
-	double get_cost() override {
+	double get_cost() const override {
 		return m_ptr_product->get_cost();
 	}
-	double get_quantity() override{
+	double get_quantity() const override{
 		return m_amount;
 	}
 };
@@ -37,10 +36,10 @@ public:
 	WeightPosition(WeightProduct& weight_prod, double weight) : Position(weight_prod) {
 		m_weight = weight;
 	}
-	double get_cost() override {
+	double get_cost() const override {
 		return m_ptr_product->get_cost();
 	}
-	double get_quantity() override {
+	double get_quantity() const override {
 		return m_weight;
 	}
 };
